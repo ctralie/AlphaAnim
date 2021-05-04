@@ -123,9 +123,9 @@ def alpha_animation(X, scales=np.array([])):
     """
     alpha_complex = gudhi.AlphaComplex(points=X)
     simplex_tree = alpha_complex.create_simplex_tree()
-    filtration = simplex_tree.get_filtration()
-    for i, f in enumerate(filtration):
-        filtration[i] = (f[0], np.sqrt(f[1]))
+    filtration = []
+    for i, f in enumerate(simplex_tree.get_filtration()):
+        filtration.append((f[0], np.sqrt(f[1])))
     diag = simplex_tree.persistence()
     dgmsalpha = gudhi2persim(diag)[0:2]
     if scales.size == 0:
